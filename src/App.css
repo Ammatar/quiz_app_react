@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  background-color: grey;
+}
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.App {
+  min-height: 98.5vh;
+  border: 8px dotted black;
+  margin: 5px;
+  padding: 5px;
+}
+/*# sourceMappingURL=App.css.map */
