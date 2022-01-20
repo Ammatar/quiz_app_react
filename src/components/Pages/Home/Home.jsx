@@ -1,21 +1,37 @@
 // import { Button, MenuItem, TextField } from '@material-ui/core';
 import { Button, MenuItem, TextField } from '@mui/material';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
-
+import Categories from '../../../Categories';
 const data = [
   { category: 'General Knowledge', value: 0 },
   { category: 'Books', value: 1 },
   { category: 'Films', value: 2 },
 ];
-const Home = ({ userName, setUserName }) => {
+const Home = ({ userName, setUserName, fetchQuestions }) => {
+  const navigate = useNavigate();
   const [category, setCategory] = useState('');
   const [difficulty, setDifficulty] = useState('');
+  const [error, setError] = useState(false);
+
+  const submitHandler = () => {
+    if (!category || !difficulty || !userName) {
+      setError(true);
+      return;
+    } else {
+      setError(false);
+      fetchQuestions(category, difficulty);
+      navigate('/quiz');
+    }
+  };
+
   return (
     <div className='content'>
       <div className='content__settings'>
         <span className='content__title'>Quiz settings</span>
         <div className='content__settings-select'>
+          {error && <div>Error</div>}
           <TextField
             style={{ marginBottom: 25 }}
             label='Enter your name'
@@ -31,13 +47,20 @@ const Home = ({ userName, setUserName }) => {
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            {data.map((el) => {
+            {Categories.map((el) => {
               return (
                 <MenuItem key={el.category} value={el.value}>
                   {el.category}
                 </MenuItem>
               );
             })}
+            {/* {data.map((el) => {
+              return (
+                <MenuItem key={el.category} value={el.value}>
+                  {el.category}
+                </MenuItem>
+              );
+            })} */}
           </TextField>
           <TextField
             select
@@ -63,6 +86,7 @@ const Home = ({ userName, setUserName }) => {
             size='large'
             onClick={() => {
               console.log('user: ', userName, 'cat - ', category);
+              submitHandler();
             }}
           >
             Start Quiz
