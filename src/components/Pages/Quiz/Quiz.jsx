@@ -20,7 +20,9 @@ const Quiz = ({ questions, userName, score, setScore, setQuestions }) => {
         ])
       );
     }
-    setTheme(questions[questionIndex].category);
+    setTheme(
+      questions[questionIndex] ? questions[questionIndex].category : 'Category'
+    );
   }, [questionIndex, questions]);
 
   const answerShuffleHandler = (answers) => {
@@ -39,7 +41,7 @@ const Quiz = ({ questions, userName, score, setScore, setQuestions }) => {
           setDisabled((prev) => !prev);
         }, 4000);
       } else {
-        navigate('/result');
+        navigate('/quiz/result');
       }
     } else {
       console.log('Incorrect');
@@ -50,7 +52,7 @@ const Quiz = ({ questions, userName, score, setScore, setQuestions }) => {
           setDisabled((prev) => !prev);
         }, 4000);
       } else {
-        navigate('/result');
+        navigate('/quiz/result');
       }
     }
   };
@@ -75,7 +77,7 @@ const Quiz = ({ questions, userName, score, setScore, setQuestions }) => {
               size='large'
               onClick={() => {
                 setSelectedAnswer('new');
-                navigate('/');
+                navigate('/quiz');
               }}
             >
               Quit

@@ -22,7 +22,7 @@ const Home = ({ userName, setUserName, fetchQuestions }) => {
     } else {
       setError(false);
       await fetchQuestions(category, difficulty);
-      navigate('/quiz');
+      navigate('/quiz/quiz');
     }
   };
 
@@ -54,13 +54,6 @@ const Home = ({ userName, setUserName, fetchQuestions }) => {
                 </MenuItem>
               );
             })}
-            {/* {data.map((el) => {
-              return (
-                <MenuItem key={el.category} value={el.value}>
-                  {el.category}
-                </MenuItem>
-              );
-            })} */}
           </TextField>
           <TextField
             select

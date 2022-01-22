@@ -31,7 +31,7 @@ function App() {
         <Header />
         <Routes>
           <Route
-            path='/quiz'
+            path='/quiz/quiz'
             element={
               <Quiz
                 questions={questions}
@@ -43,11 +43,11 @@ function App() {
             }
           />
           <Route
-            path='/result'
+            path='/quiz/result'
             element={<Result userName={userName} score={score} />}
           />
           <Route
-            path='/'
+            path='/quiz'
             element={
               <Home
                 userName={userName}
