@@ -4,24 +4,24 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 import Categories from '../../../Categories';
-const data = [
-  { category: 'General Knowledge', value: 0 },
-  { category: 'Books', value: 1 },
-  { category: 'Films', value: 2 },
-];
+// const data = [
+//   { category: 'General Knowledge', value: 0 },
+//   { category: 'Books', value: 1 },
+//   { category: 'Films', value: 2 },
+// ];
 const Home = ({ userName, setUserName, fetchQuestions }) => {
   const navigate = useNavigate();
   const [category, setCategory] = useState('');
   const [difficulty, setDifficulty] = useState('');
   const [error, setError] = useState(false);
 
-  const submitHandler = () => {
+  const submitHandler = async () => {
     if (!category || !difficulty || !userName) {
       setError(true);
       return;
     } else {
       setError(false);
-      fetchQuestions(category, difficulty);
+      await fetchQuestions(category, difficulty);
       navigate('/quiz');
     }
   };

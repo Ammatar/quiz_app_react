@@ -18,7 +18,12 @@ function App() {
         category && `&category=${category}`
       }${difficulty && `&difficulty=${difficulty}`}&type=multiple`
     );
-    setQuestions(data.results);
+    console.log(data);
+    if (data === '') {
+      fetchQuestions(category, difficulty);
+    } else {
+      setQuestions(data.results);
+    }
   };
   return (
     <BrowserRouter>
@@ -37,7 +42,10 @@ function App() {
               />
             }
           />
-          <Route path='/result' element={<Result />} />
+          <Route
+            path='/result'
+            element={<Result userName={userName} score={score} />}
+          />
           <Route
             path='/'
             element={

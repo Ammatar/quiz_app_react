@@ -10,4 +10,37 @@
       -ms-flex-align: center;
           align-items: center;
 }
+
+.question__container {
+  border: dotted 1px black;
+}
+
+.question__title {
+  padding: 20px 0;
+}
+
+.answer__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.answer__item {
+  padding: 20px 0;
+  width: 50%;
+}
+
+.answer__item:hover {
+  background-color: #cde2e9;
+}
+
+.answer__item.right {
+  background-color: lightgreen;
+}
+
+.buttons__container {
+  width: 100%;
+}
 /*# sourceMappingURL=Quiz.css.map */
