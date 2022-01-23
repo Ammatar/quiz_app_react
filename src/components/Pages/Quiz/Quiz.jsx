@@ -28,6 +28,18 @@ const Quiz = ({ questions, userName, score, setScore, setQuestions }) => {
   const answerShuffleHandler = (answers) => {
     return answers.sort(() => Math.random() - 0.5);
   };
+  const questionIndexHandler = (disabled = true, delay = 2000) => {
+    if (questionIndex < 9) {
+      setTimeout(() => {
+        setQuestionIndex((prev) => prev + 1);
+        if (disabled) {
+          setDisabled((prev) => !prev);
+        }
+      }, delay);
+    } else {
+      navigate('/quiz/result');
+    }
+  };
   const answerHandler = (el) => {
     setDisabled((prev) => !prev);
     console.log(el, '|', questions[questionIndex].correct_answer);
@@ -35,25 +47,11 @@ const Quiz = ({ questions, userName, score, setScore, setQuestions }) => {
       console.log('Correct');
       setSelectedAnswer('');
       setScore((prev) => prev + 1);
-      if (questionIndex < 9) {
-        setTimeout(() => {
-          setQuestionIndex((prev) => prev + 1);
-          setDisabled((prev) => !prev);
-        }, 4000);
-      } else {
-        navigate('/quiz/result');
-      }
+      questionIndexHandler(true);
     } else {
       console.log('Incorrect');
       setSelectedAnswer('');
-      if (questionIndex < 9) {
-        setTimeout(() => {
-          setQuestionIndex((prev) => prev + 1);
-          setDisabled((prev) => !prev);
-        }, 4000);
-      } else {
-        navigate('/quiz/result');
-      }
+      questionIndexHandler(true);
     }
   };
   return (
@@ -87,7 +85,9 @@ const Quiz = ({ questions, userName, score, setScore, setQuestions }) => {
               style={{ width: '50%' }}
               color='primary'
               size='large'
-              onClick={() => {}}
+              onClick={() => {
+                questionIndexHandler(false, 0);
+              }}
             >
               Next question
             </Button>

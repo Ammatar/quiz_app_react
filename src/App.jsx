@@ -18,7 +18,7 @@ function App() {
         category && `&category=${category}`
       }${difficulty && `&difficulty=${difficulty}`}&type=multiple`
     );
-    console.log(data);
+    // console.log(data);
     if (data === '') {
       fetchQuestions(category, difficulty);
     } else {
